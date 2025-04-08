@@ -1,6 +1,17 @@
 defmodule KVStore do
   use GenServer
 
+  # Supervisor child spec
+  def child_spec(_args) do
+    %{
+      id: __MODULE__,
+      start: {__MODULE__, :start_link, [%{}]},
+      type: :worker,
+      restart: :permanent, # Restart the worker if it crashes
+      shutdown: 5000, # Wait up to 5 seconds for the worker to shut down
+    }
+  end
+
   def start_link(state \\ %{}) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
   end
