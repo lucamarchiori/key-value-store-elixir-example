@@ -32,3 +32,9 @@ iex(9)> KVStore.get_all()
 iex(10)>
 
 ```
+
+## Running in Docker
+´´´sh
+docker compose up
+docker exec -it kvstore /app/bin/k_v_store remote  
+´´´

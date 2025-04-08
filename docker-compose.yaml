@@ -1,10 +1,10 @@
-# docker-compose.yml
-
 version: "3.8"
 
 services:
   kvstore:
     build: .
     container_name: kvstore
-    volumes:
-      - .:/app
+    ports:
+      - "4000:4000"  # optional, if you expose anything
+    environment:
+      MIX_ENV: prod
