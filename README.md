@@ -34,7 +34,29 @@ iex(10)>
 ```
 
 ## Running in Docker
-´´´sh
+```sh
 docker compose up
 docker exec -it kvstore /app/bin/k_v_store remote  
-´´´
+```
+
+## Trace Examples
+```sh
+# Traces the next 5 calls to KVStore.store/1.
+:recon_trace.calls({KVStore, :store, 1}, 5)
+```
+```sh
+# Traces the next 10 calls to any public function in KVStore.
+:recon_trace.calls({KVStore, :_, :_}, 10)
+```
+```sh
+# Useful for checking which cast messages the GenServer is receiving.
+:recon_trace.calls({KVStore, :handle_cast, 2}, 5)
+```
+```sh
+# Watch all messages being sent to the GenServer's mailbox.
+:recon_trace.p(pid, [:receive])
+```
+```sh
+# Stop all tracing
+:recon_trace.clear()
+```
