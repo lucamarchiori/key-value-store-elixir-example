@@ -1,0 +1,10 @@
+# docker-compose.yml
+
+version: "3.8"
+
+services:
+  kvstore:
+    build: .
+    container_name: kvstore
+    volumes:
+      - .:/app
